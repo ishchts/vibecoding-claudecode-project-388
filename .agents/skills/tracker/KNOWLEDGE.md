@@ -55,7 +55,7 @@ percent_change = ((current_price - previous_price) / previous_price) * 100
 
 Каждое изменение содержит ровно `url`, `change_type`, `field`, `old_value`, `new_value`, `percent_change`, `significant`, `reason`. `reason` — короткое объяснение, `significant` — булево значение; цены и процент — числа либо `null`.
 
-Полный `changes` содержит значимые и незначительные изменения. `significant_changes` содержит только элементы `changes` с `significant: true`; это список для будущих уведомлений. `diagnostics` хранит ошибки и восстановление отдельно. Уведомления Telegram на этом шаге не отправляй.
+Полный `changes` содержит значимые и незначительные изменения. `significant_changes` содержит только элементы `changes` с `significant: true`; это источник сводки Telegram по правилам SKILL.md. `diagnostics` хранит ошибки и восстановление отдельно и не отправляется в Telegram. Изменения для URL с текущим `extraction_failed` исключай из уведомления; если допустимых значимых изменений нет, ничего не отправляй.
 
 Допустимые типы значимых изменений: `regular_price_changed`, `sale_price_changed`, `sale_appeared`, `sale_disappeared`, `credit_appeared`, `credit_disappeared`, `product_added`, `product_removed`. В пользовательском отчёте показывай только `significant_changes`; полный diff остаётся во временных файлах. Диагностику показывай отдельно от изменений. Если значимых изменений нет, выводи точно: «Значимых изменений по сравнению с предыдущим прогоном нет.»
 
